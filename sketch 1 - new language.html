@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>new language</title>
+
+	<script src="jquery.js"></script>
+<style>
+
+</style>
+<head>
+<body>
+
+
+<strong>Our Array consists of:</strong><br>
+<span id="massParts"></span><br><br>
+
+<strong>Generating a word from syllables:</strong><br>
+<span id="oneWord"></span><br><br>
+
+<strong>Generating a sentence from several words</strong><br>
+<span id="oneSentence"></span><br><br>
+
+<strong>Generating a text from sentences:</strong><br>
+<span id="oneText">&nbsp;&nbsp;&nbsp;&nbsp;</span><br><br>
+
+<input type="button" id="button1" value="Reload the text" onClick="reload()" />
+
+
+<script>
+// creating an array of syllables
+var a, b, c, newWord;
+var parts = ["ing", "er", "a", "on", "po", "i", "re", "tion", "con", "de", "sta", "tle", "li", "sion", "day", "dis", "lo", "el", "gen", "mon", "ro", "den", "os", "si"];
+var partsAsString = parts.join(', ');
+
+// display syllables array elements
+document.getElementById("massParts").innerHTML = partsAsString;
+
+function shuffleSyllables() {
+  // getting random element from an array
+  a = Math.floor(Math.random() * parts.length);
+  b = Math.floor(Math.random() * parts.length);
+  c = Math.floor(Math.random() * parts.length);
+
+  var oneSylWord = parts[a];
+  var twoSylWord = parts[a]+parts[b];
+  var threeSylWord = parts[a]+parts[b]+parts[c];
+
+  //putting three words into an array
+  newWord = [oneSylWord, twoSylWord, threeSylWord];
+}
+
+function getRandomWord() {
+  shuffleSyllables();
+  // taking one of those free words fron the new array
+  return newWord[Math.floor(Math.random() * newWord.length)];
+}
+
+// making a word with one, two and three syllables
+shuffleSyllables();
+
+// display a random 1,2,3 syllable word
+document.getElementById("oneWord").innerHTML = getRandomWord();
+
+
+// generating four sentences with different lengths 3,4,5,6 words
+function shuffleSentences() {
+var sentence1 = getRandomWord() + " " +  getRandomWord() + " " +  getRandomWord() + ". ";
+var sentence2 = getRandomWord() + " " +  getRandomWord() + " " +  getRandomWord() +  " " +  getRandomWord() + ". ";
+var sentence3 = getRandomWord() + " " +  getRandomWord() + " " +  getRandomWord() + " " +  getRandomWord() + " " +  getRandomWord() + ". ";
+var sentence4 = getRandomWord() + " " +  getRandomWord() + " " + getRandomWord() + " " + getRandomWord() + " " +  getRandomWord() +  " " +  getRandomWord() + ". ";
+
+ sentenceRand = [sentence1, sentence2, sentence3, sentence4];
+}
+
+
+function getSentence() {
+  shuffleSentences();
+  // taking one of those sentences from the new array
+  return sentenceRand[Math.floor(Math.random() * sentenceRand.length)];
+}
+
+shuffleSentences();
+
+document.getElementById("oneSentence").innerHTML = getSentence();
+
+
+// Making the senentenses start with a capital letter
+function capSent() {
+   var sampleSent = getSentence();
+   return sampleSent.charAt(0).toUpperCase() + sampleSent.slice(1).toLowerCase();
+}
+
+
+document.getElementById("oneText").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent()  + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent()  + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent()  + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent() + capSent();
+
+
+function reload(){
+	location.reload();
+}
+</script>
+
+</body>
+</html>
